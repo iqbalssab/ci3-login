@@ -13,7 +13,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item bg-primary text-light">Name : <?= $u['name']; ?></li>
                             <li class="list-group-item bg-primary text-light">Email : <?= $u['email']; ?></li>
-                            <li class="list-group-item bg-primary text-light">Role : <?= $u['role_id'] == 1 ? "Admin": "Member"; ?></li>
+                            <li class="list-group-item bg-primary text-light">Role : <?= $u['role_id'] == 1 ? "Admin" : ($u['role_id'] == 2 ? "member" : ($u['role_id'] == 3 ? "Supervisor" : "Unsetted")) ; ?></li>
                             <li class="list-group-item bg-primary text-light">Status : <?= $u['is_active'] == 1 ? "Active": "Inactive"; ?></li>
                             <li class="list-group-item bg-primary text-light">Join Date : <?= date('l d F Y', $u['date_created']); ?></li>
                         </ul>

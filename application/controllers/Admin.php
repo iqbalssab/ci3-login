@@ -123,7 +123,7 @@ class Admin extends CI_Controller {
 
     public function userManagement()
     {
-        $data['title'] = 'User';
+        $data['title'] = 'User Management';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['users'] = $this->db->get('user')->result_array();

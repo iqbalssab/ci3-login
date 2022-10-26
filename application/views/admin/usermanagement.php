@@ -12,7 +12,7 @@
                                     <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">User Name</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -22,7 +22,14 @@
                                     <tr>
                                         <th scope="row"><?= $i; ?></th>
                                         <td><?= $u['name']; ?></td>
-                                        <td><?= $u['email']; ?></td>
+                                        <?php $role = $u['role_id']; ?>
+                                        <?php if($role == 1) : ?>
+                                        <td>Admin</td>
+                                        <?php elseif($role == 2) : ?>
+                                        <td>Member</td>
+                                        <?php elseif($role == 3) : ?>
+                                        <td>Supervisor</td>
+                                        <?php endif ?>
                                         <td>
 
                                         <a href="<?= base_url('admin/userdetail/') . $u['id']; ?>" class="badge badge-primary">Detail</a>
@@ -61,7 +68,7 @@
         </div>
         <!-- RoleID -->
         <fieldset class="mb-1 p-2" style="border: 0.5px solid black;">
-            <legend>Role :</legend>
+            <legend class="px-2" style="font-size: 1.2rem;">Role :</legend>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="role_id" id="role_id" value="1" <?= $u['role_id'] == 1 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="role_id">Admin</label>
@@ -71,13 +78,13 @@
                 <label class="form-check-label" for="role_id">User</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="role_id" id="role_id" value="2" <?= $u['role_id'] == 3 ? "checked" : ""; ?>>
+                <input class="form-check-input" type="radio" name="role_id" id="role_id" value="3" <?= $u['role_id'] == 3 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="role_id">Supervisor</label>
             </div>
         <!-- Status -->
         </fieldset>
         <fieldset class="mb-1 p-2" style="border: 0.5px solid black;">
-            <legend>Status :</legend>
+            <legend class="px-2" style="font-size: 1.2rem;">Status :</legend>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="is_active" id="is_active" value="1" <?= $u['is_active'] == 1 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="is_active">Active</label>
