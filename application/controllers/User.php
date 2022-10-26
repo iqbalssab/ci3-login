@@ -111,7 +111,7 @@ class User extends CI_Controller {
                 if($current_password == $new_password){
                     $this->session->set_flashdata('message', '
                 <div class="alert alert-warning" role="alert">
-                    Password Tidak Boleh Sama ! 
+                    Password Tidak Boleh Sama dengan yg lama ! 
                 </div>');
                 redirect('user/changepassword');
                 } else{
