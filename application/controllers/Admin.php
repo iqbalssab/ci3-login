@@ -151,5 +151,46 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function deleteUser($id)
+    {
+        {
+            $data = $this->db->where('id', $id);
+            $this->db->delete('user', $data);
+            $this->session->set_flashdata('message', '
+                    <div class="alert alert-success" role="alert">
+                        Delete User Success! 
+                    </div>');
+            redirect('admin/usermanagement');
+        }
+    }
+
+    public function editUserManagement($id)
+    {
+        $data['user'] = $this->db->get('user')->result_array();
+        $this->form_validation->set_rules('name', 'Name', 'required');
+
+        if($this->form_validation->run() == true){
+
+            $data = [
+                'name' => $this->input->post('name'), 
+                'role_id' => $this->input->post('role_id')
+            ];
+
+            $this->db->where('id', $id);
+            $this->db->update('user', $data);
+                $this->session->set_flashdata('message', '
+                    <div class="alert alert-success" role="alert">
+                        Edit User Success! 
+                    </div>');
+                    redirect('admin/usermanagement');
+        } else {
+            $this->session->set_flashdata('message', '
+                    <div class="alert alert-danger" role="alert">
+                        Edit User Failed! 
+                    </div>');
+            redirect('admin/usermanagement');
+        }
+    }
+
 
 }
