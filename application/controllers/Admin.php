@@ -121,5 +121,35 @@ class Admin extends CI_Controller {
         redirect('admin/role');
     }
 
+    public function userManagement()
+    {
+        $data['title'] = 'User';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['users'] = $this->db->get('user')->result_array();
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/usermanagement', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function userDetail($user_id)
+    {
+        {
+            $data['title'] = 'User Detail';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    
+            $data['users'] = $this->db->get_where('user', ['id' => $user_id])->result_array();
+            
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/userdetail', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
 
 }
