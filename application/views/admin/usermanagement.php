@@ -53,18 +53,41 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('admin/editusermanagement/').$u['id']; ?>" method="post">
+      <form action="<?= base_url('admin/editUserManagement/').$u['id']; ?>" method="post">
       <div class="modal-body">
       <input type="hidden" name="id" value="<?= $u['id']?>">
         <div class="form-group">
-            <input type="text" class="form-control" id="user_name" name="user_name" value="<?= $u['name'] ?>">
+            <input type="text" class="form-control" id="name" name="name" value="<?= $u['name'] ?>">
         </div>
-        <div class="form-group">
-        <input type="text" class="form-control" id="role_id" name="role_id" value="<?= $u['role_id'] ?>">
-        </div>
-        <div class="form-group">
-        <input type="text" class="form-control" id="is_active" name="is_active" value="<?= $u['is_active'] ?>">
-        </div>
+        <!-- RoleID -->
+        <fieldset class="mb-1 p-2" style="border: 0.5px solid black;">
+            <legend>Role :</legend>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="role_id" id="role_id" value="1" <?= $u['role_id'] == 1 ? "checked" : ""; ?>>
+                <label class="form-check-label" for="role_id">Admin</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="role_id" id="role_id" value="2" <?= $u['role_id'] == 2 ? "checked" : ""; ?>>
+                <label class="form-check-label" for="role_id">User</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="role_id" id="role_id" value="2" <?= $u['role_id'] == 3 ? "checked" : ""; ?>>
+                <label class="form-check-label" for="role_id">Supervisor</label>
+            </div>
+        <!-- Status -->
+        </fieldset>
+        <fieldset class="mb-1 p-2" style="border: 0.5px solid black;">
+            <legend>Status :</legend>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="is_active" id="is_active" value="1" <?= $u['is_active'] == 1 ? "checked" : ""; ?>>
+                <label class="form-check-label" for="is_active">Active</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="is_active" id="is_active" value="0" <?= $u['is_active'] == 0 ? "checked" : ""; ?>>
+                <label class="form-check-label" for="is_active">Non-Active</label>
+            </div>
+        </fieldset>
+       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

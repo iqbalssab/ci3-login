@@ -169,11 +169,13 @@ class Admin extends CI_Controller {
         $data['user'] = $this->db->get('user')->result_array();
         $this->form_validation->set_rules('name', 'Name', 'required');
 
+
         if($this->form_validation->run() == true){
 
             $data = [
                 'name' => $this->input->post('name'), 
-                'role_id' => $this->input->post('role_id')
+                'role_id' => $this->input->post('role_id'),
+                'is_active' => $this->input->post('is_active')
             ];
 
             $this->db->where('id', $id);
@@ -184,6 +186,7 @@ class Admin extends CI_Controller {
                     </div>');
                     redirect('admin/usermanagement');
         } else {
+            
             $this->session->set_flashdata('message', '
                     <div class="alert alert-danger" role="alert">
                         Edit User Failed! 
